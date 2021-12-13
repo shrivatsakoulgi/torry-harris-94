@@ -1,0 +1,70 @@
+
+create table customer 
+(
+  customer_no int primary key,
+  name varchar(20),
+  email varchar(50)
+);
+
+create table product
+(
+  product_no int primary key,
+  product_name varchar(100),
+  price int
+);
+
+create table orders
+(
+  order_no int ,
+  customer_no int,
+  product_no int,
+  order_date date,
+  quantity int,
+  total_price int,
+  primary key (order_no,customer_no,product_no),
+  foreign key(customer_no) references customer(customer_no),
+  foreign key(product_no) references product(product_no)
+);
+
+
+insert into customer values (1001,'Ram','ram@gmail.com');
+insert into customer values (1002,'Shyam','shyam@gmail.com');
+insert into customer values (1003,'Sita','sita@gmail.com');
+insert into customer values (1004,'Radha','radha@gmail.com');
+
+/*select * from customer; */
+
+insert into product values (2001,'One Plus Mobile',35000);
+insert into product values (2002,'HP Pendrive 32GB',800);
+insert into product values (2003,'Segate 2TB HDD',5000);
+insert into product values (2004,'Sony Headset',3000);
+insert into product values (2005,'Logitech wireless Mouse',2000);
+/*select * from product; */
+
+insert into orders values(3001,1001,2001,'2021-12-10',1,35000);
+insert into orders values(3002,1002,2002,'2021-12-09',3,2400);
+insert into orders values(3003,1002,2003,'2021-12-09',1,5000);
+insert into orders values(3004,1003,2004,'2021-12-09',1,3000);
+insert into orders values(3005,1004,2004,'2021-12-10',2,6000);
+insert into orders values(3006,1002,2001,'2021-12-10',1,35000);
+/*select * from orders; */
+
+/* 1. Orders by customer_no 1002 
+
+select * from orders where customer_no=1002; */
+
+
+/* 2. Orders of product_no 2001
+
+select * from orders where product_no=2001; */
+
+
+/* 3. orders where quantity >1 
+
+select * from orders where quantity>1; */
+
+
+/* 4. customer_no where order price > 5000
+
+select customer_no from orders where total_price>5000; */
+
